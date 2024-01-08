@@ -1,5 +1,7 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types } = require('mongoose');
+const moment = require('moment');
 
+//defining Reaction schema
 const reactionSchema = new Schema (
     {
         reactionId: {
@@ -7,28 +9,30 @@ const reactionSchema = new Schema (
             default: () => new Types.ObjectId()
         },
         reactionBody: {
-            Type: String,
-            Required: true,
-            maxLength: 280,
+            type: String,
+            required: true,
+            maxLength: 280
         },
         username: {
-            Type: String,
-            Required: true,
+            type: String,
+            required: true
         },
         createdAt: {
-            Type: Date,
-            default: Date.now,
+            type: Date,
 
+            //using moment for data/timestamp format 
+            default: Date.now,
+            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
         },
     },
     {
         toJSON: {
-            getters: true,
+          // TODO: Mongoose will not include virtuals by default, so add a `virtuals` property and set it's value to true
+        getters: true,
         },
-        id:false,
+        id: false,
     }
 );
 
-
-
+//export reactionSchema
 module.exports = reactionSchema;

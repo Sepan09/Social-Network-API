@@ -3,41 +3,48 @@ const { User, Thought } = require('../models');
 
 connection.on('error', (err) => err);
 
-connection.once('open', async() => {
-    console.log('connected');
+connection.once('open', async () => {
+  console.log('connected');
 
-    await Thought.deleteMany({});
+  // Drop existing thoughts
+  await Thought.deleteMany({});
 
-    await User.deleteMany({});
+  // Drop existing users
+  await User.deleteMany({});
 
-    const users = [
-        {
-            username: "john",
-            email: "john@gmail.com"
-        },
-        {
-            username: "smith",
-            email: "smith@gmail.com"
-        }
-    ];
+  // Create an array of usernames/emails
+  const users = [
+      {
+          username: "fred",
+          email: "fred@hotmail.com"
+      },
+      {
+          username: "tony",
+          email: "tony@gmail.com"
+      }
+  ];
 
-    const thoughts = [
-        {
-            thoughtText: "many men",
-            username: "ahmed"
-        },
-        {
-            thoughtText: "oh my oh my",
-            username: "josh"
-        }
-    ];
+  //create an array of thoughts/usernames
+  const thoughts = [
+      {
+          thoughtText: "Many, many moons ago...",
+          username: "Steve"
+      },
+      {
+          thoughtText: "How many times must I ...",
+          username: "Linda"
+      }
+  ]
 
-    await User.collection.insertMany(users);
+  // Add usernames to the collection and await the results
+  await User.collection.insertMany(users);
 
-    await Thought.collection.insertMany(thoughts);
+  // Add thoughts to the collection and await the results
+  await Thought.collection.insertMany(thoughts);
 
-    console.log(users);
-    console.log(thoughts);
-    console.log('seeding complete ');
-    process.exit(0);
+  // Log out the seed data to indicate what should appear in the database
+  console.table(users);
+  console.table(thoughts);
+  console.info('Seeding complete! 🌱');
+  process.exit(0);
 });
