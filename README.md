@@ -40,3 +40,9 @@ npm test
 
 ## Questions
 If you have any questions about the repo, open an issue or contact me directly at Sepanmustafa@gmail.com. You can find more of my work at [Sepan09](https://github.com/Sepan09)
+
+## Video Link 
+https://drive.google.com/file/d/1r-ZvN8zJFNzJdjEJIp2MynAB1w_wChSx/view
+
+## Repo Link
+https://github.com/Sepan09/Social-Network-API
