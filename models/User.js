@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-//defining User Schema
+
 const userSchema = new Schema(
 {
     username: {
@@ -15,7 +15,7 @@ const userSchema = new Schema(
         lowercase: true,
         unique: true,
 
-        //validator for email address
+
         validate: {
             validator: function(v) {
                 return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
@@ -35,7 +35,6 @@ const userSchema = new Schema(
 },
 {
     toJSON: {
-      // TODO: Mongoose will not include virtuals by default, so add a `virtuals` property and set it's value to true
     virtuals: true,
     getters: true,
     },
@@ -43,14 +42,14 @@ const userSchema = new Schema(
 }
 );
 
-// virtual method to get total friends count
+
 userSchema.virtual('friendCount').get(function () {
 return `friends: ${this.friends.length}`;
 });
 
 
-// Initialize our User model
+
 const User = model('User', userSchema);
 
-//export User Model
+
 module.exports = User;

@@ -6,43 +6,43 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
   console.log('connected');
 
-  // Drop existing thoughts
+
   await Thought.deleteMany({});
 
-  // Drop existing users
+
   await User.deleteMany({});
 
-  // Create an array of usernames/emails
+
   const users = [
       {
-          username: "fred",
-          email: "fred@hotmail.com"
+          username: "john",
+          email: "john@hotmail.com"
       },
       {
-          username: "tony",
-          email: "tony@gmail.com"
+          username: "smith",
+          email: "smith@gmail.com"
       }
   ];
 
-  //create an array of thoughts/usernames
+
   const thoughts = [
       {
-          thoughtText: "Many, many moons ago...",
-          username: "Steve"
+          thoughtText: "many men, many many many many men",
+          username: "50 cent"
       },
       {
-          thoughtText: "How many times must I ...",
-          username: "Linda"
+          thoughtText: "yee",
+          username: "ahmed"
       }
   ]
 
-  // Add usernames to the collection and await the results
+
   await User.collection.insertMany(users);
 
-  // Add thoughts to the collection and await the results
+
   await Thought.collection.insertMany(thoughts);
 
-  // Log out the seed data to indicate what should appear in the database
+
   console.table(users);
   console.table(thoughts);
   console.info('Seeding complete! 🌱');
